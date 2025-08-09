@@ -961,9 +961,23 @@ class InputBindingValue {
         this.value_.setRawValue(rawValue, options);
     }
     fetch() {
-        // programmatic read → next change is NOT user-initiated
+        // We’ll flip to "external" but only keep it if a change actually emits.
         this.__lastEventInternal = false;
+
+        let emitted = false;
+        const markEmitted = () => { emitted = true; };
+        this.value_.emitter.on('change', markEmitted);
+
+        // Re-read from the bound object
         this.value_.rawValue = this.binding.read();
+
+        // Stop listening
+        this.value_.emitter.off('change', markEmitted);
+
+        // If there was no actual change (no emit), don't poison the next user change
+        if (!emitted) {
+            this.__lastEventInternal = true;
+        }
     }
     push() {
         this.binding.write(this.value_.rawValue);
