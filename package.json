@@ -2,6 +2,6 @@
   "name": "tweakpane-custom",
   "version": "4.0.5-custom.1",
   "main": "index.js",
-  "types": "index.d.ts",
+  "types": "types/index.d.ts",
   "type": "module"
 }
