@@ -1742,6 +1742,7 @@ declare class FolderController extends ContainerBladeController<FolderView> {
 
 interface FolderApiEvents {
     change: TpChangeEvent<unknown, BladeApi>;
+    'internal-change': TpChangeEvent<unknown, BladeApi>;
     fold: TpFoldEvent<FolderApi>;
 }
 declare class FolderApi extends ContainerBladeApi<FolderController> implements ContainerApi, EventListenable<FolderApiEvents> {
