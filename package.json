@@ -1,0 +1,6 @@
+{
+  "name": "tweakpane-custom",
+  "version": "1.0.0",
+  "main": "tweakpane.js",
+  "type": "module"
+}
